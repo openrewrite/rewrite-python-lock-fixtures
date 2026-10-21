@@ -94,6 +94,14 @@ that keeps `[package.metadata]` in sync with pyproject.toml passes `--check` and
   only six changed).
 - There is no way to force modernization (issue 15220 closed as not-planned).
 
+With a configured uv release (`PythonExecutionContextView.setUvVersion`) the engine does what that release does:
+a changed lock below revision 3 is written at the release's revision with every artifact's upload time from its
+index where it lists one, byte for byte `uv.lock.after-change-current-uv` above. The whole-lock write also gives
+every edge marker its current form (`platform_system == 'Windows'` becomes `sys_platform == 'win32'`), drops wheels
+the Python range rules out, and records forks in the order uv solves them, higher Python lower bound first
+(`off40-old-uv-marker-rewrite/`, `off41-old-uv-fork-order/`, both locked by uv 0.4.30 and relocked by 0.13.4).
+Without a configured release the engine keeps the lock's own style:
+
 **Engine consequence**: a Java surgical editor must (a) detect the lock's revision (absent/2/3) and
 emit the matching style for edited entries — same-revision edits must NOT add upload-time to a
 rev-none file; and (b) accept that its output will differ from what a real `uv lock` would produce
@@ -205,6 +213,12 @@ rather than guess dependencies.
   minor (`cp311`, `cp313`) are dropped while `cp39-abi3`, `cp313-abi3` and `py3-none-any` stay, in filename
   order (`off35-exact-minor-wheel-filter/`); `python_version < '3.14'` is always true and vanishes from the
   edge, `python_version < '3.12'` never fires and takes its edge with it (`off36-exact-minor-marker-drop/`).
+
+- uv drops the wheels a package's reachability rules out: `winonly==1.0; sys_platform == 'win32'` keeps only
+  `win_amd64` of its three platform wheels (`off39-platform-scoped-wheels/`, `uv-lock` `is_wheel_unreachable_for_marker`,
+  a disjointness test against one constant marker per platform and architecture). uv rebuilds every package's
+  wheels this way on each write; the engine prunes every package likewise, and fails loud where a platform-scoped
+  package it did not resolve changes reachability, since uv would take its wheels from the index again.
 
 ## 9a. `[tool.uv] constraint-dependencies` (local-index scenarios, uv 0.13.4)
 

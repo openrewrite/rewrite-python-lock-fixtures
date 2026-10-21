@@ -13,6 +13,12 @@ All scripts run under zsh and need `uvx` and Python 3.11+.
    the manifest, both locks and the listings and metadata files into the fixture. Copy `index.json` and the two
    manifests into `lock/uv/<scenario>/recording/`.
 
+## How uv renders markers
+
+`uv-marker-renderings.py <markers.txt> <out.tsv> [uv-release]` records how a uv release writes each marker, as
+`lock/uv/marker/` holds for uv 0.13.4. It declares every marker on a dependency group of one probe project, locks it
+against a one-package local index, and reads the rendering back from `[package.metadata.requires-dev]`.
+
 ## Replaying the engine outside the tests
 
 `src/Harness.java` drives one engine from the command line against a `rewrite-python` build. Write the build's test

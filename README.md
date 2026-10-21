@@ -4,8 +4,9 @@ Recorded package-manager output used by the native Python lock regeneration test
 [openrewrite/rewrite](https://github.com/openrewrite/rewrite) (`rewrite-python`). Each scenario is replayed offline,
 and the engine must reproduce the package manager's lock byte for byte, or fail the way the scenario records.
 
-The scenarios still live in `rewrite-python/src/test/resources` as well. Until the `rewrite-python` build reads them
-from here, a scenario added in one place is added in the other, and the two copies are kept identical.
+The `rewrite-python` build downloads the latest `main` of this repository and puts `lock/` on the test classpath.
+There is no published artifact and no version pinning: fixture changes here track the tests in lockstep, and older
+revisions of rewrite are not kept building against newer fixtures.
 
 ## Layout
 
