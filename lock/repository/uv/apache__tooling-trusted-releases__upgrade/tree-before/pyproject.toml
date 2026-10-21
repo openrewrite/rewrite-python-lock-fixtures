@@ -1,0 +1,182 @@
+[project]
+name = "tooling-trusted-releases"
+version = "0.0.1"
+description = "Apache Trusted Releases"
+authors = [
+  { name = "ASF Tooling", email = "dev@tooling.apache.org" }
+]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = "~=3.14.0"
+dependencies = [
+  "aiofiles>=24.1.0,<26.0.0",
+  "aiohttp>=3.13.4",
+  "aioshutil (>=1.5,<2.0)",
+  "aiosmtplib (>=4.0.0,<6.0.0)",
+  "aiosqlite>=0.21.0,<0.23.0",
+  "aiozipstream (>=0.4,<0.5)",
+  "alembic>=1.14,<2.0.0",
+  "asfquart @ git+https://github.com/apache/infrastructure-asfquart.git@main",
+  "asyncssh>=2.20.0,<3.0.0",
+  "blake3>=1.0.8",
+  "blockbuster>=1.5.23,<2.0.0",
+  "cmarkgfm>=2024.11.20",
+  "cryptography>=50.0,<51.0.0",
+  "cvss>=3.6,<4.0.0",
+  "cyclonedx-python-lib[json-validation]>=11.0.0",
+  # "dkimpy @ git+https://github.com/sbp/dkimpy.git@main",
+  "dnspython>=2.7.0,<3.0.0",
+  "dulwich>=1.0.0",
+  "dunamai>=1.23.0",
+  "email-validator>=2.2.0,<3.0.0",
+  "exarch>=0.2.7,<0.4",
+  "gitignore-parser (>=0.1.12,<0.2.0)",
+  "google-re2>=1.1.20251105",
+  "greenlet>=3.1.1,<4.0.0",
+  "htpy (>=25.7.0,<26.0.0)",
+  "hypercorn[uvloop]>=0.17,<1.0.0",
+  "ijson>=3.5.1,<4",
+  "jsonpatch>=1.33",
+  "ldap3 (==2.10.2rc3)",
+  "orjson>=3.11.9",
+  "packaging>=25.0",
+  "psutil>=7.2.1",
+  "puremagic>=1.30",
+  "pydantic-xml (>=2.17.2,<3.0.0)",
+  "pyjwt (>=2.10.1,<3.0.0)",
+  # "pynacl>=1.5.0",
+  "python-decouple>=3.8,<4.0.0",
+  "quart-rate-limiter>=0.12.1",
+  "quart-schema[pydantic]>=0.21,<1.0.0",
+  "quart-wtforms>=1.0.3,<2.0.0",
+  "requests>=2.33.0",
+  "rfc8785>=0.1.4",
+  "rich>=14.0.0",
+  "rpgp-py==0.20.0",
+  "semver>=3.0.4",
+  "sqlmodel>=0.0.24,<0.1.0",
+  "ssh-audit>=3.3.0",
+  "standard-imghdr>=3.13.0",
+  "strictyaml>=1.7.3",
+  "structlog>=25.5.0",
+]
+
+[dependency-groups]
+dev = [
+  "decouple-types>=1.0",
+  "djlint>=1.36.4",
+  "pre-commit>=2.20.0",
+  "pyright>=1.1.393",
+  "ruff>=0.9.4",
+  "types-aiofiles>=24.1.0.20241221,<26.0.0.0",
+]
+test = [
+  "netifaces>=0.11.0",
+  "playwright>=1.51.0",
+  "pytest-asyncio>=0.24",
+  "pytest-playwright>=0.7.2",
+  "pytest>=8.0",
+  "pyyaml>=6.0.2",
+]
+
+# Additional tools
+
+[tool.djlint]
+profile = "jinja"
+extension = "html"
+indent = 2
+blank_line_after_tag = "load,extends,include,html"
+close_void_tags = true
+format_css = true
+format_js = true
+max_line_length = 120
+use_gitignore = true
+preserve_blank_lines = true
+ignore = "H006,H031"
+include = "atr/templates"
+
+[tool.pyright]
+include = ["atr", "playwright"]
+exclude = [
+  ".venv*",
+  "**/__pycache__",
+  "**/node_modules",
+  "tests",
+]
+ignore = []
+defineConstant = { DEBUG = true }
+stubPath = "typestubs"
+reportMissingImports = "error"
+reportMissingTypeStubs = false
+# reportUnusedCallResult = "error"
+# https://github.com/microsoft/pyright/issues/9579#issuecomment-2549237805
+reportUnnecessaryComparison = "error"
+reportUnusedCoroutine = "error"
+# typeCheckingMode = "strict"
+pythonVersion = "3.14"
+executionEnvironments = [
+  { root = ".", pythonVersion = "3.14" }
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths  = ["tests"]
+asyncio_mode = "auto"
+addopts = "--ignore=tests/e2e"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+extend-exclude = [
+    "node_modules",
+]
+
+[tool.ruff.lint]
+ignore = [
+  "S101", # assert
+  "S103", # file permissions
+  "S104", # interfaces
+  "S105", # hardcoded password
+  "S106", # password keyword
+  "S314", # old expat concerns
+  "S603", # subprocess.run
+  "S607", # partial path
+  "S608", # SQL string query
+  "S704", # markupsafe
+]
+select = [
+  "A005",  # stdlib-module-shadowing
+  "ASYNC", # flake8-async
+  "C90",   # cyclomatic-complexity
+  "E",     # pycodestyle
+  "F",     # pyflakes
+  "I",     # isort
+  "N",     # pep8-naming
+  "RUF",   # ruff-checks
+  "S",     # flake8-bandit
+  "TC",    # flake8-type-checking
+  "TID",   # flake8-tidy-imports
+  "UP",    # pyupgrade
+  "W"
+]
+
+[tool.ruff.lint.flake8-builtins]
+strict-checking = true
+
+[tool.ruff.lint.per-file-ignores]
+"atr/analysis.py" = ["RUF001"]
+"atr/db/__init__.py" = ["C901"]
+"atr/models/session.py" = ["N815"]
+"atr/sbom/conformance.py" = ["C901"]
+"atr/sbom/licenses.py" = ["C901"]
+"migrations/env.py" = ["E402"]
+
+[tool.uv]
+# Dependency cooldown, requires uv 0.9.17+
+exclude-newer = "5 days"
+exclude-newer-package = { cryptography = "2026-08-04", h2 = "2026-08-07" }
+override-dependencies = ["cryptography>=50.0,<51.0.0","h2>=4.4.1,<4.4.2"]
+required-version = ">=0.9.17"
+
+[tool.uv.extra-build-dependencies]
+google-re2 = ["pybind11==3.0.4"]
