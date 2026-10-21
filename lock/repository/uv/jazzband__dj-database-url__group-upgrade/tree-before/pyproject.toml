@@ -1,0 +1,81 @@
+[project]
+name = "dj-database-url"
+version = "0.0.0"
+description = "Use Database URLs in your Django Application."
+authors = [
+    { name = "Jazzband community" }
+]
+readme = "README.rst"
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+dependencies = [
+    "django>=4.2",
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+[project.urls]
+Homepage = "https://jazzband.co/projects/dj-database-url"
+Changelog = "https://github.com/jazzband/dj-database-url/blob/master/CHANGELOG.md"
+Funding = "https://psfmember.org/civicrm/contribute/transact/?reset=1&id=34"
+Bug = "https://github.com/jazzband/dj-database-url/issues"
+
+[build-system]
+requires = ["uv_build>=0.9.17,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "dj_database_url"
+module-root = ""
+source-include = ["dj_database_url/py.typed", "tests/**"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+extend-select = ["B", "I"]
+
+[tool.ruff.format]
+quote-style = "preserve"
+
+[tool.mypy]
+show_error_codes=true
+disallow_untyped_defs=true
+disallow_untyped_calls=true
+warn_redundant_casts=true
+
+[tool.pyright]
+typeCheckingMode = "strict"
+
+[tool.coverage.report]
+fail_under = 100
+
+[dependency-groups]
+dev = [
+    "coverage[toml]>=7.13.0",
+    "mypy>=1.19.1",
+    "pyright>=1.1.407",
+    "pytest>=9.0.2",
+    "ruff>=0.14.10",
+    "twine>=6.2.0",
+    "wheel>=0.45.1",
+    "pre-commit",
+]

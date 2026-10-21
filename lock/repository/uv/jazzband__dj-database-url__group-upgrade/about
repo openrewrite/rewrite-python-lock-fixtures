@@ -1,0 +1,2 @@
+https://github.com/jazzband/dj-database-url/blob/8013aaed8a9979b6c686668039d153af5e782b9c/uv.lock
+group dev: mypy 1.19.1 -> ==2.4.0 (was 'mypy>=1.19.1')
