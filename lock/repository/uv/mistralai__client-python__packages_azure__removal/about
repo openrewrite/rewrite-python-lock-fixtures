@@ -1,0 +1,2 @@
+https://github.com/mistralai/client-python/blob/08c7956a8267e8fbaf4b6cecd5be4ca9c3dfeda3/packages/azure/uv.lock
+removed "pydantic >=2.11.2",
