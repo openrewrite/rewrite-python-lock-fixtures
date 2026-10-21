@@ -1,0 +1,6 @@
+{"packages":[{"name":"aiofileish","version":"1.0","requires_dist":["caioish; python_version < \"3.11\""],"requires_python":null,"provides_extra":[]},
+{"name":"aiofileish","version":"2.0","requires_dist":["caioish; python_version >= \"3.11\""],"requires_python":null,"provides_extra":[]},
+{"name":"caioish","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"importlibish","version":"1.0","requires_dist":["zippish; python_version < \"3.12\""],"requires_python":null,"provides_extra":[]},
+{"name":"zippish","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"keeper","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}

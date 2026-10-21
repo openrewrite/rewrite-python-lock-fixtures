@@ -1,0 +1,5 @@
+{"packages":[
+{"name":"gamma","version":"1.0","requires_dist":["delta>=1; extra == \"fast\""],"requires_python":null,"provides_extra":["fast","all"]},
+{"name":"gamma","version":"2.0","requires_dist":["delta>=1; (sys_platform == \"win32\") and extra == \"fast\"","epsilon>=1; (sys_platform == \"emscripten\" and extra == \"all\") or (sys_platform == \"win32\" and extra == \"all\")"],"requires_python":null,"provides_extra":["fast","all"]},
+{"name":"delta","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"epsilon","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}

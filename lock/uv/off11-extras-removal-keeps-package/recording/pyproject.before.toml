@@ -1,0 +1,13 @@
+[project]
+name = "scen-s2-extras-removal"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "reqlike[socks]",
+    "other",
+]
+
+[[tool.uv.index]]
+name = "local"
+url = "http://127.0.0.1:__PORT__/simple/"
+default = true

@@ -1,0 +1,6 @@
+{"packages":[
+{"name":"keeper","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"beta","version":"1.0","requires_dist":["gamma[fast]>=1"],"requires_python":null,"provides_extra":[]},
+{"name":"gamma","version":"1.0","requires_dist":["delta>=1; extra == \"fast\"","zeta>=1; extra == \"fast\" or extra == \"slow\""],"requires_python":null,"provides_extra":["fast","slow"]},
+{"name":"delta","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"zeta","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}

@@ -1,0 +1,29 @@
+{
+ "packages": [
+  {
+   "name": "socklike",
+   "version": "1.0",
+   "requires_dist": [],
+   "requires_python": null,
+   "provides_extra": []
+  },
+  {
+   "name": "reqlike",
+   "version": "1.0",
+   "requires_dist": [
+    "socklike>=1; extra == \"socks\""
+   ],
+   "requires_python": null,
+   "provides_extra": [
+    "socks"
+   ]
+  },
+  {
+   "name": "reqlike",
+   "version": "2.0",
+   "requires_dist": [],
+   "requires_python": null,
+   "provides_extra": []
+  }
+ ]
+}

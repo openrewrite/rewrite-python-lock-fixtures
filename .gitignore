@@ -1,0 +1,4 @@
+.cache/
+record/out/
+record/snapshot/
+record/classpath*.txt

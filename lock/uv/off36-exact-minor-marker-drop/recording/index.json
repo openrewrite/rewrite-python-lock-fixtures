@@ -1,0 +1,4 @@
+{"packages":[{"name":"anyioish","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"anyioish","version":"2.0","requires_dist":["typingish; python_version < \"3.14\"","oldish; python_version < \"3.12\""],"requires_python":null,"provides_extra":[]},
+{"name":"typingish","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"oldish","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}

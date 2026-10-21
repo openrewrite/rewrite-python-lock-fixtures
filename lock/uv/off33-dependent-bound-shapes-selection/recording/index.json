@@ -1,0 +1,4 @@
+{"packages":[{"name":"reqlike","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"reqlike","version":"1.4","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"reqlike","version":"2.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"other","version":"1.0","requires_dist":["reqlike<1.5"],"requires_python":null,"provides_extra":[]}]}

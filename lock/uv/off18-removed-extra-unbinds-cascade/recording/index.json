@@ -1,0 +1,8 @@
+{"packages":[
+{"name":"urlish","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"urlish","version":"1.9","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"urlish","version":"2.5","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"reqlike","version":"1.0","requires_dist":["urlish<2; extra == 'socks'"],"requires_python":null,"provides_extra":["socks"]},
+{"name":"keeper","version":"1.0","requires_dist":["reqlike"],"requires_python":null,"provides_extra":[]},
+{"name":"other","version":"1.0","requires_dist":["urlish>=1.0"],"requires_python":null,"provides_extra":[]},
+{"name":"other","version":"2.0","requires_dist":["urlish>=1.5"],"requires_python":null,"provides_extra":[]}]}

@@ -1,0 +1,6 @@
+{"packages":[
+{"name":"alpha","version":"1.0","requires_dist":["alphac==1.0; extra == \"c\""],"requires_python":null,"provides_extra":["c"]},
+{"name":"alpha","version":"2.0","requires_dist":["alphac==2.0; extra == \"c\"","alphaw>=1; extra == \"c\" and sys_platform == \"win32\""],"requires_python":null,"provides_extra":["c"]},
+{"name":"alphac","version":"1.0","requires_dist":["alpha==1.0"],"requires_python":null,"provides_extra":[]},
+{"name":"alphac","version":"2.0","requires_dist":["alpha==2.0"],"requires_python":null,"provides_extra":[]},
+{"name":"alphaw","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}

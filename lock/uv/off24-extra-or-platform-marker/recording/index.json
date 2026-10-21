@@ -1,0 +1,5 @@
+{"packages":[
+{"name":"keeper","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"beta","version":"1.0","requires_dist":["gamma[fast]>=1"],"requires_python":null,"provides_extra":[]},
+{"name":"gamma","version":"1.0","requires_dist":["delta>=1; extra == \"fast\" or sys_platform == \"win32\""],"requires_python":null,"provides_extra":["fast"]},
+{"name":"delta","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}

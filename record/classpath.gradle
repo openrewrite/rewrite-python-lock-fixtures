@@ -1,0 +1,13 @@
+allprojects {
+    afterEvaluate { p ->
+        if (p.path == ':rewrite-python') {
+            p.tasks.register('printTestRuntimeClasspath') {
+                doLast {
+                    def cp = p.sourceSets.test.runtimeClasspath.files.collect { it.absolutePath }.join(File.pathSeparator)
+                    new File('/tmp/pylock-harness/classpath.txt').text = cp
+                    println "CLASSPATH_WRITTEN"
+                }
+            }
+        }
+    }
+}

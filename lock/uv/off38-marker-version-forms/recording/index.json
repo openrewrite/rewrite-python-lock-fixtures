@@ -1,0 +1,11 @@
+{"packages":[{"name":"formsy","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"formsy","version":"2.0","requires_dist":[
+ "p1; python_full_version < \"3.11.0a6\"",
+ "p4; python_full_version < \"3.11.0\"",
+ "p5; python_version <= \"3.11\"",
+ "p9; python_full_version <= \"3.12.1\""
+ ],"requires_python":null,"provides_extra":[]},
+{"name":"p1","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"p4","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"p5","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]},
+{"name":"p9","version":"1.0","requires_dist":[],"requires_python":null,"provides_extra":[]}]}
