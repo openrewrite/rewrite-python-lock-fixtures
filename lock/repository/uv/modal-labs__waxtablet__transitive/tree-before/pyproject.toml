@@ -1,0 +1,31 @@
+[project]
+name = "waxtablet"
+version = "0.2.3"
+description = "Auto-diffing LSP client for remote Jupyter notebooks."
+readme = "README.md"
+authors = [{ name = "Eric Zhang", email = "ekzhang1@gmail.com" }]
+requires-python = ">=3.9"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.29.1",
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.26.0",
+    "ruff>=0.11.8",
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+lint.select = ["E", "F", "W", "I"]
+lint.ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+extra-standard-library = ["pytest", "pytest_asyncio"]

@@ -4,7 +4,8 @@
 usage: trim-listings.py <scenario-dir>...
 
 A package locked at the same versions before and after the edit keeps only those versions' files, which are all a
-replay reads of it. Any other package keeps the versions at or above the lowest one either lock holds, and a package
+replay reads of it. A package the edit brings in keeps every version, since which one a replay picks depends on the
+older ones too. Any other package keeps the versions at or above the lowest one either lock holds, and a package
 neither lock holds keeps every version. uv chose none of the dropped versions, so a replay that reaches for one fails
 on the missing version rather than passing.
 """
@@ -47,7 +48,7 @@ def trim(scenario):
         name = canonicalize_name(listing.name[:-len("-listing-json")])
         before = locked["before"].get(name, set())
         after = locked["after"].get(name, set())
-        if not before and not after:
+        if not before:
             continue
         data = json.loads(listing.read_bytes())
         if before == after:

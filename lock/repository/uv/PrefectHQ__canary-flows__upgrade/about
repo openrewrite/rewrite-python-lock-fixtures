@@ -1,0 +1,2 @@
+https://github.com/PrefectHQ/canary-flows/blob/b9f03579936b87fb8a2f03e2c524fa2366f77ce1/uv.lock
+prefect 3.4.16 -> ==3.9.0 (was 'prefect>=3.4.16')
