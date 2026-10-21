@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: six
+Version: 1.18.0
+Summary: synthetic six
+Requires-Dist: iniconfig>=2.0; python_version < '3.14'
+Requires-Dist: iniconfig>=9; python_version >= '3.14'
