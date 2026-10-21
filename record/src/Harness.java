@@ -38,6 +38,9 @@ public final class Harness {
                 org.openrewrite.HttpSenderExecutionContextView http = org.openrewrite.HttpSenderExecutionContextView.view(ctx);
                 http.setHttpSender(new RecordingHttp(http.getHttpSender(), Paths.get(System.getenv("PYLOCK_RECORD_HTTP"))));
             }
+            if (System.getenv("PYLOCK_CURRENT_TIME") != null) {
+                ctx.putMessage("org.openrewrite.python.uvlock.currentTime", java.time.Instant.parse(System.getenv("PYLOCK_CURRENT_TIME")));
+            }
             if (System.getenv("PYLOCK_UV_VERSION") != null) {
                 org.openrewrite.python.PythonExecutionContextView.view(ctx).setUvVersion(System.getenv("PYLOCK_UV_VERSION"));
             }

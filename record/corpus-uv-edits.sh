@@ -17,10 +17,13 @@ for d in $root/*/; do
     cp $d/pyproject.toml $o/pyproject.before.toml; cp $d/uv.lock $o/uv.lock.before
     python3 $HERE/edit_pyproject.py $kind $o/pyproject.before.toml $o/uv.lock.before > $o/pyproject.after.toml 2> $o/edit.log
     if [ $? -ne 0 ]; then echo "uv\t$name\t$kind\tno-edit\t$(tail -1 $o/edit.log)"; rm -rf $o; continue; fi
-    java -cp "$cp" Harness uv $o/pyproject.before.toml $o/pyproject.after.toml $o/uv.lock.before $o/uv.lock.engine > $o/engine.out 2>&1
+    # uv gets the lock's [options] as flags, and shares the engine's "now"
+    now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    flags=(${(f)"$(python3 $HERE/uv-lock-options.py $o/uv.lock.before)"})
+    PYLOCK_CURRENT_TIME=$now java -cp "$cp" Harness uv $o/pyproject.before.toml $o/pyproject.after.toml $o/uv.lock.before $o/uv.lock.engine > $o/engine.out 2>&1
     st=$(grep '^STATUS' $o/engine.out | cut -d' ' -f2)
     cp $o/pyproject.after.toml $o/work/pyproject.toml; cp $o/uv.lock.before $o/work/uv.lock
-    (cd $o/work && timeout 300 uvx uv@$uvv lock --no-progress -q > ../uv.out 2>&1); uvrc=$?
+    (cd $o/work && UV_INTERNAL__TEST_CURRENT_TIMESTAMP=$now timeout 300 uvx uv@$uvv lock "${flags[@]}" --no-progress -q > ../uv.out 2>&1); uvrc=$?
     if [ $uvrc -ne 0 ]; then uvres="uv-failed"; else uvres="uv-ok"; fi
     if [ "$st" = success ]; then
       if [ $uvrc -eq 0 ]; then

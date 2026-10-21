@@ -30,6 +30,7 @@ lock/repository/uv/<repository>__<edit>/
   before, after   the lock as committed, and the lock uv wrote after the edit
   about           the lock's source at its commit, and the edit
   recorded-with   the uv release that wrote after
+  recorded-at     the moment uv locked, which a relative exclude-newer counts back from
   http/           every index response the engine asked for, and a 404 list of the URLs that answered not found
 ```
 
