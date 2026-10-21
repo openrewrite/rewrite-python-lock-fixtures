@@ -1,0 +1,2 @@
+https://github.com/dlt-hub/dlthub-start/blob/a6451fdede1bc847b130e046c40d53772d7aca29/uv.lock
+removed "tomli>=2.0; python_version < '3.11'",

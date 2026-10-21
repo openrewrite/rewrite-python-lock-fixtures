@@ -1,0 +1,94 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dlthub-start"
+version = "0.10.9"
+description = "Create a dltHub workspace and hand off to your coding agent — scaffold, install, log in, and connect a playground, then the agent deploys and runs the sample pipeline."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "dltHub" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+]
+dependencies = [
+  "rich>=13.7",
+  "beaupy>=3.9",
+  "posthog>=3.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/dlt-hub/dlthub-start"
+Repository = "https://github.com/dlt-hub/dlthub-start"
+Issues = "https://github.com/dlt-hub/dlthub-start/issues"
+Changelog = "https://github.com/dlt-hub/dlthub-start/releases"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  # Cap below 0.16: it enables new default lint rules that need a separate migration.
+  "ruff>=0.6,<0.16",
+  "mypy>=1.10",
+  "dlt>=1.28.0",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["src/create_dlthub_workspace/scaffolds"]
+
+[tool.ruff.lint]
+extend-select = ["PLC0415"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = false
+strict_optional = true
+warn_redundant_casts = true
+disallow_any_generics = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_return_any = true
+namespace_packages = true
+warn_unused_ignores = true
+show_error_codes = true
+files = ["src", "tests", "tests_integration", "scripts"]
+exclude = ["src/create_dlthub_workspace/scaffolds"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+warn_return_any = false
+
+[[tool.mypy.overrides]]
+module = "tests_integration.*"
+disallow_untyped_defs = false
+warn_return_any = false
+
+[[tool.mypy.overrides]]
+module = "beaupy.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "posthog.*"
+ignore_missing_imports = true
+
+# `tomli` is only installed on Python <3.11 (we fall back to stdlib `tomllib`
+# on >=3.11), so it's absent from the dev env when running on newer pythons.
+# Suppress missing-stub errors there; the runtime path is short and stable.
+[[tool.mypy.overrides]]
+module = "tomli"
+ignore_missing_imports = true
+
+[project.scripts]
+dlthub-start = "create_dlthub_workspace.cli:main"
+
+[tool.hatch.build.hooks.custom]
+path = "hatch_build.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/create_dlthub_workspace"]
