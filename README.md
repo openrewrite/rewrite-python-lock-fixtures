@@ -11,12 +11,19 @@ from here, a scenario added in one place is added in the other, and the two copi
 
 ```
 lock/<manager>/<scenario>/      manager: uv, poetry, pdm, pipenv
-  pyproject.toml   the manifest after the edit (Pipfile for pipenv)
-  *.before         the lock before the edit
-  *.after          the lock the package manager wrote (absent when it failed)
-  http/            the index responses and metadata files the scenario needs
-  recording/       for a scenario recorded against a local index, the inputs `record/` serves and edits
+  pyproject.before.toml   the manifest before the edit, where the scenario was recorded from one
+  pyproject.toml          the manifest after the edit (Pipfile for pipenv)
+  *.before                the lock before the edit
+  *.after                 the lock the package manager wrote (absent when it failed)
+  expect                  the outcome when it is not byte-exact (below)
+  http/                   the index responses and metadata files the scenario needs
+  recording/              for a scenario recorded against a local index, the inputs `record/` serves and edits
 ```
+
+An `expect` line is `<outcome> <reason> [<package>]`. `uv-rejects` means the package manager refused the edit, and
+the engine must fail too. `engine-refuses` means the package manager wrote a lock the engine does not reproduce, so
+the engine must fail rather than write a different one; such a scenario may keep the package manager's lock as
+`*.after` for the record. The reason is the engine's `LockFileRegeneration.Reason`.
 
 Each manager directory's README records which release wrote each scenario, against which index, and what the
 scenario pins. `lock/uv/BEHAVIOR.md` and `lock/uv/FORMAT.md` record uv's behavior and lock format as observed.
@@ -25,7 +32,8 @@ scenario pins. `lock/uv/BEHAVIOR.md` and `lock/uv/FORMAT.md` record uv's behavio
 
 Record with the real package manager from an empty cache and never hand-edit a lock. Most uv scenarios are recorded
 against a throwaway PEP 503 index of synthetic wheels, served locally and rewritten to `https://index.example`
-afterwards. The scripts are in [`record/`](record/README.md).
+afterwards. The scripts are in [`record/`](record/README.md), with `pipenv-oracle.py`, which computes the
+Pipfile.lock hashes and JSON layout the pipenv tests expect.
 
 ## License
 
