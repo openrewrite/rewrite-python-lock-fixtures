@@ -1,0 +1,2 @@
+https://github.com/pallets/click/blob/2247b35ea1c47c727d7a06e51fa280e12a863ff6/uv.lock
+group dev: ruff 0.15.9 -> ==0.17.1 (was 'ruff')
