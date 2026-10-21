@@ -1,0 +1,2 @@
+https://github.com/astral-sh/attest-action/blob/38fd99624eac0e819150c97c8abb499617c04b71/uv.lock
+removed "sigstore>=4.1.0",

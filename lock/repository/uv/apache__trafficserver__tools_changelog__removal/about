@@ -1,0 +1,2 @@
+https://github.com/apache/trafficserver/blob/78742f6c3cdba59888f3aed2632afb8b33310f1d/tools/changelog/uv.lock
+removed "pyyaml>=6.0",

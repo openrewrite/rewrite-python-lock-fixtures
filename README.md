@@ -21,6 +21,18 @@ lock/<manager>/<scenario>/      manager: uv, poetry, pdm, pipenv
   recording/              for a scenario recorded against a local index, the inputs `record/` serves and edits
 ```
 
+A scenario recorded from a public repository's lock is a whole repository, edited as the corpus tools edit it:
+
+```
+lock/repository/uv/<repository>__<edit>/
+  tree-before/    the repository's manifest as committed
+  tree/           the manifest after the edit
+  before, after   the lock as committed, and the lock uv wrote after the edit
+  about           the lock's source at its commit, and the edit
+  recorded-with   the uv release that wrote after
+  http/           every index response the engine asked for, and a 404 list of the URLs that answered not found
+```
+
 An `expect` line is `<outcome> <reason> [<package>]`. `uv-rejects` means the package manager refused the edit, and
 the engine must fail too. `engine-refuses` means the package manager wrote a lock the engine does not reproduce, so
 the engine must fail rather than write a different one; such a scenario may keep the package manager's lock as

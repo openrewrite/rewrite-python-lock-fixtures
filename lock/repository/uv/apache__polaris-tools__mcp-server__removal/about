@@ -1,0 +1,2 @@
+https://github.com/apache/polaris-tools/blob/ac47afae66ade0f51240b88f1c3920bf062cd4fb/mcp-server/uv.lock
+removed "python-dotenv>=1.2.2",

@@ -1,0 +1,2 @@
+https://github.com/astral-sh/python-build-standalone/blob/daabab92bffaf9bff3f8d18126482985bc513ca9/uv.lock
+boto3 1.42.75 -> ==1.43.116 (was 'boto3>=1.37')

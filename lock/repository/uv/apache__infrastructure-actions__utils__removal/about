@@ -1,0 +1,2 @@
+https://github.com/apache/infrastructure-actions/blob/5da27f5b746c2b441f1d5af88e6832dadeed79e2/utils/uv.lock
+removed "rich-argparse>=1.6",

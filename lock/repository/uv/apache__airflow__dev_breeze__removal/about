@@ -1,0 +1,2 @@
+https://github.com/apache/airflow/blob/31994976b54fa98bba8619dc97ec6d32db67ce92/dev/breeze/uv.lock
+removed "semver>=3.0.4"

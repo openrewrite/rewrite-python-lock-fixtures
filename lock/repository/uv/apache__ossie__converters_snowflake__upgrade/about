@@ -1,0 +1,2 @@
+https://github.com/apache/ossie/blob/b42ce0924eda8d03d9fd6b5ffdaa852343ad7ecc/converters/snowflake/uv.lock
+sqlglot 30.23.0 -> ==30.24.0 (was 'sqlglot>=30.12.0')

@@ -34,6 +34,10 @@ public final class Harness {
             org.openrewrite.ExecutionContext ctx = new InMemoryExecutionContext(t -> {
                 System.err.println("CTX_ERROR " + t);
             });
+            if (System.getenv("PYLOCK_RECORD_HTTP") != null) {
+                org.openrewrite.HttpSenderExecutionContextView http = org.openrewrite.HttpSenderExecutionContextView.view(ctx);
+                http.setHttpSender(new RecordingHttp(http.getHttpSender(), Paths.get(System.getenv("PYLOCK_RECORD_HTTP"))));
+            }
             if (System.getenv("PYLOCK_UV_VERSION") != null) {
                 org.openrewrite.python.PythonExecutionContextView.view(ctx).setUvVersion(System.getenv("PYLOCK_UV_VERSION"));
             }
@@ -67,6 +71,50 @@ public final class Harness {
         }
         System.out.println("MILLIS " + ms);
         System.exit(2);
+    }
+
+    /**
+     * Saves every response the engine receives under the names the offline tests serve: a listing URL ending in
+     * {@code /} as {@code <name>-listing-json} or {@code -listing-html}, any other URL by its last path segment, and
+     * each URL answered 404 as a line of {@code 404}.
+     */
+    static final class RecordingHttp implements org.openrewrite.ipc.http.HttpSender {
+        private final org.openrewrite.ipc.http.HttpSender delegate;
+        private final Path dir;
+
+        RecordingHttp(org.openrewrite.ipc.http.HttpSender delegate, Path dir) {
+            this.delegate = delegate;
+            this.dir = dir;
+        }
+
+        @Override
+        public Response send(Request request) {
+            String url = request.getUrl().toString();
+            try (Response response = delegate.send(request)) {
+                byte[] body = response.getBodyAsBytes();
+                Files.createDirectories(dir);
+                if (response.getCode() == 404) {
+                    Files.write(dir.resolve("404"), (url + "\n").getBytes(StandardCharsets.UTF_8),
+                            java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+                } else if (response.getCode() == 200) {
+                    Files.write(dir.resolve(name(url, body)), body);
+                }
+                return new Response(response.getCode(), new java.io.ByteArrayInputStream(body), () -> {
+                });
+            } catch (java.io.IOException e) {
+                throw new java.io.UncheckedIOException(e);
+            }
+        }
+
+        static String name(String url, byte[] body) {
+            String path = url.replaceFirst("[?#].*$", "");
+            if (path.endsWith("/")) {
+                String trimmed = path.substring(0, path.length() - 1);
+                boolean json = body.length > 0 && body[0] == '{';
+                return trimmed.substring(trimmed.lastIndexOf('/') + 1) + (json ? "-listing-json" : "-listing-html");
+            }
+            return path.substring(path.lastIndexOf('/') + 1);
+        }
     }
 
     private static String read(String path) throws Exception {

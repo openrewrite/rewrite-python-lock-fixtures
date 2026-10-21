@@ -1,0 +1,2 @@
+https://github.com/apache/arrow-adbc/blob/b85c632000b932500bd6c867dab6456430049f37/c/driver/postgresql/validation/uv.lock
+hypothesis 6.168.3 -> ==6.170.5 (was 'hypothesis>=6.168.3')

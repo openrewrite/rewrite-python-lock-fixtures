@@ -1,0 +1,2 @@
+https://github.com/apache/arrow-adbc/blob/b85c632000b932500bd6c867dab6456430049f37/c/driver/sqlite/validation/uv.lock
+added python-dateutil>=2.9

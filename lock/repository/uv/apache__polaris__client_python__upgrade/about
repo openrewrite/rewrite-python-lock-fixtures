@@ -1,0 +1,2 @@
+https://github.com/apache/polaris/blob/4211195e2b6e9b676107e372cdeae16c45e6f3b5/client/python/uv.lock
+python-dateutil 2.9.0.post0 -> ==2.9.0 (was 'python-dateutil>=2.8.2')

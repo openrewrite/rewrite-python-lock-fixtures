@@ -1,0 +1,2 @@
+https://github.com/apache/gravitino/blob/5a45beb1c743fe9b34be7a8d0d5a3596e7ec84af/mcp-server/uv.lock
+removed "fakeredis<2.38.0",
