@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: iniconfig
+Version: 9.0
+Summary: synthetic iniconfig
+Requires-Dist: xdep
