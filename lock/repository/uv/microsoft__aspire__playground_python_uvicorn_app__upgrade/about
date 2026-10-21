@@ -1,0 +1,2 @@
+https://github.com/microsoft/aspire/blob/ffe52b37fcf42c7d98c68b53d037b790d791de0a/playground/python/uvicorn_app/uv.lock
+opentelemetry-exporter-otlp-proto-grpc 1.38.0 -> ==1.45.1 (was 'opentelemetry-exporter-otlp-proto-grpc>=1.38.0')
