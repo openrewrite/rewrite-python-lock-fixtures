@@ -1,0 +1,2 @@
+https://github.com/huggingface/smol-course/blob/b712705327d1204353a1209e991334d441b4de7e/uv.lock
+datasets 3.1.0 -> ==5.1.0 (was 'datasets>=3.1.0')
