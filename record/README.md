@@ -43,3 +43,12 @@ flags (`uv-lock-options.py`), and uv and the engine share one pinned "now" (`UV_
 
 `fetch_corpus.py <candidates> <corpus> [limit]` downloads manifest and lock pairs from GitHub, one per line of
 `<owner>/<repo>\t<path-to-lock>`, recording the commit in each case's `META.json`.
+
+## pipenv locks, checked by installing them
+
+A pipenv lock the engine writes is an install-correct minimal change, not pipenv's own output, so the pipenv corpus
+is checked by behaviour. `pipenv-install-oracle.sh <dir>` runs `pipenv verify` and `pipenv sync` on the Pipfile and
+Pipfile.lock in `<dir>`, in a clean Linux container with the Pipfile's Python. `corpus-pipenv-oracle.sh <cases>/pipenv
+<results>` applies `edit_pipfile.py`'s edits (upgrade, removal, add-leaf; `EDIT_KINDS` picks them) and checks each lock
+the engine writes. A lock that fails while the original lock fails the same way is counted as the environment's.
+
