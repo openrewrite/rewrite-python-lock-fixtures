@@ -9,7 +9,9 @@ edit=$1; case_dir=$2; out=$3; uvv=${4:-0.13.4}
 cp="$HERE/out:$(cat ${PYLOCK_CP_FILE:-$HERE/classpath.txt})"
 work=$(mktemp -d); cache=$(mktemp -d)
 cp $edit/pyproject.after.toml $work/pyproject.toml; cp $edit/uv.lock.before $work/uv.lock
-(cd $work && UV_CACHE_DIR=$cache XDG_CONFIG_HOME=$cache timeout 300 uvx uv@$uvv lock --no-progress -q) > /dev/null 2>&1 || { rm -rf $work $cache; exit 1; }
+# the lock's [options] stand for settings its author may have made outside the manifest, so uv gets them as flags
+flags=(${(f)"$(python3 $HERE/uv-lock-options.py $edit/uv.lock.before)"})
+(cd $work && UV_CACHE_DIR=$cache XDG_CONFIG_HOME=$cache timeout 300 uvx uv@$uvv lock "${flags[@]}" --no-progress -q) > /dev/null 2>&1 || { rm -rf $work $cache; exit 1; }
 rm -rf $out; mkdir -p $out/tree-before $out/tree
 cp $edit/pyproject.before.toml $out/tree-before/pyproject.toml
 cp $edit/pyproject.after.toml $out/tree/pyproject.toml
