@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: dep
+Version: 1.0
+Summary: synthetic dep
+Provides-Extra: x
+Requires-Dist: xdep; extra == 'x'

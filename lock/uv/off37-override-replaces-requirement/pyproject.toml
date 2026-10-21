@@ -1,0 +1,15 @@
+[project]
+name = "override-probe"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "pkga==2.0",
+]
+
+[tool.uv]
+override-dependencies = ["dep[x]==1.0"]
+
+[[tool.uv.index]]
+name = "local"
+url = "https://index.example/simple/"
+default = true

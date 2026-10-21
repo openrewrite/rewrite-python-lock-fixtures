@@ -1,0 +1,49 @@
+version = 1
+revision = 5
+requires-python = ">=3.12"
+
+[manifest]
+overrides = [{ name = "dep", extras = ["x"], specifier = "==1.0" }]
+
+[[package]]
+name = "dep"
+version = "1.0"
+source = { registry = "https://index.example/simple/" }
+wheels = [
+    { url = "https://index.example/simple/dep/dep-1.0-py3-none-any.whl", hash = "sha256:fad25f9d5740d3bc3bf9a4ac95dfe2b56d4413c39344ca756bb2fb043000ee3f" },
+]
+
+[package.optional-dependencies]
+x = [
+    { name = "xdep" },
+]
+
+[[package]]
+name = "override-probe"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "pkga" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pkga", specifier = "==1.0" }]
+
+[[package]]
+name = "pkga"
+version = "1.0"
+source = { registry = "https://index.example/simple/" }
+dependencies = [
+    { name = "dep", extra = ["x"] },
+]
+wheels = [
+    { url = "https://index.example/simple/pkga/pkga-1.0-py3-none-any.whl", hash = "sha256:7df5628702fb023b1f651384bff8187b4395cc11e9098d99b345d9bbffc2e69e" },
+]
+
+[[package]]
+name = "xdep"
+version = "1.0"
+source = { registry = "https://index.example/simple/" }
+wheels = [
+    { url = "https://index.example/simple/xdep/xdep-1.0-py3-none-any.whl", hash = "sha256:5770b3207ad76ae367fd76d63aaa22531b8c13b1fd2fd2098a86a45b65f2dbe7" },
+]
