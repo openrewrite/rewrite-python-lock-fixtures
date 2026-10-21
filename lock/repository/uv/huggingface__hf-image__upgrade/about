@@ -1,0 +1,2 @@
+https://github.com/huggingface/hf-image/blob/8e08d0cd68315f7a8f7b4c21eec73f6514481e04/uv.lock
+huggingface-hub 1.33.0 -> ==1.8.0 (was 'huggingface_hub>=1.0')

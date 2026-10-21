@@ -1,0 +1,117 @@
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
+
+[project]
+name = "pytest-scim2-server"
+version = "0.3.0"
+description = "SCIM2 server fixture for Pytest"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["pytest", "fixture", "scim", "scim2", "rfc7643", "rfc7644"]
+dependencies = [
+    "portpicker>=1.6.0",
+    "pytest>=8.3.4",
+    "scim2-server>=0.5.0",
+]
+authors = [{name="Yaal Coop", email="contact@yaal.coop"}]
+maintainers = [{name="Éloi Rivard", email="eloi@yaal.coop"}]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+repository = "https://github.com/pytest-dev/pytest-scim2-server"
+
+[tool.uv]
+exclude-newer = "14 days"
+exclude-newer-package = { scim2-models = false, scim2-client = false, scim2-server = false, scim2-cli = false, scim2-tester = false, pytest-scim2-server = false }
+
+[tool.uv.build-backend]
+module-root = ""
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.1",
+    "prek>=0.5.3",
+    "pytest-cov>=6.0.0",
+    "scim2-client[httpx2]>=0.9.0",
+    "tox-uv>=1.16.0",
+    "types-portpicker>=1.6.0.20260508",
+]
+
+[project.entry-points."pytest11"]
+scim2_server = "pytest_scim2_server"
+
+[tool.ruff.lint]
+select = [
+    "B", # flake8-bugbear
+    "D", # pydocstyle
+    "E", # pycodestyle
+    "F", # pyflakes
+    "I", # isort
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501", # line-too-long
+    "E722", # bare-except
+    "D100", # public module
+    "D101", # public class
+    "D102", # public method
+    "D103", # public function
+    "D104", # public package
+    "D105", # magic method
+    "D106", # nested class
+    "D107", # public init
+    "D203", # no-blank-line-before-class
+    "D213", # multi-line-summary-second-line
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.mypy]
+files = ["pytest_scim2_server"]
+strict = true
+
+[tool.tox]
+requires = ["tox>=4.19"]
+env_list = [
+    "style",
+    "py311",
+    "py312",
+    "py313",
+    "py314",
+    "py315",
+    "minversions",
+]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["dev"]
+commands = [
+    ["pytest", "--showlocals", "--full-trace", "{posargs}"],
+]
+
+[tool.tox.env.style]
+runner = "uv-venv-runner"
+commands = [
+    ["prek", "run", "--all-files", "--show-diff-on-failure"],
+]
+
+[tool.tox.env.minversions]
+runner = "uv-venv-runner"
+uv_resolution = "lowest-direct"

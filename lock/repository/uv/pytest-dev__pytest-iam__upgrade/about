@@ -1,0 +1,2 @@
+https://github.com/pytest-dev/pytest-iam/blob/09b1d5cfc4dc8eb97702b1510a2b585efeb6b25b/uv.lock
+faker 40.23.0 -> ==40.43.0 (was 'faker>=38.2.0')

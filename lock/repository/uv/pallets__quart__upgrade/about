@@ -1,0 +1,2 @@
+https://github.com/pallets/quart/blob/29d339c87f9efd1ba5268666e2404530fe078911/uv.lock
+click 8.4.2 -> ==8.5.0 (was 'click>=8.0')

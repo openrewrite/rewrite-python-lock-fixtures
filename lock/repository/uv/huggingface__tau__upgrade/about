@@ -1,0 +1,2 @@
+https://github.com/huggingface/tau/blob/3bd42c04dffa4b6c47f65ee9cd4766470faa3fdd/uv.lock
+anyio 4.13.0 -> ==4.15.1 (was 'anyio>=4.0')

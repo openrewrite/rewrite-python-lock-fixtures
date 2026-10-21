@@ -1,0 +1,2 @@
+https://github.com/microsoft/physical-ai-toolchain/blob/5b8c088f71d023caa137b361bc78ef6005dec109/workflows/azureml/scripts/uv.lock
+azure-ai-ml 1.35.1 -> ==1.35.2 (was 'azure-ai-ml==1.35.1')

@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/langgraph-swarm-py/blob/5442a15cdd0ed210589148900c9960c24c489d04/uv.lock
+removed "types-setuptools>=80",

@@ -1,0 +1,2 @@
+https://github.com/pydantic/pydantic-ai-temporal-example/blob/ca6194221a3c54a9af2010da1be858ffd8553259/uv.lock
+removed "pydantic-ai-slim[duckduckgo]>=1.0.2",

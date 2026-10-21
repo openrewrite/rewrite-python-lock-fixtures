@@ -1,0 +1,2 @@
+https://github.com/marimo-team/marimo-operator/blob/31bd9bcaaa0173264f4ac2ccaa04feba85614d13/plugin/uv.lock
+transitive cachetools 6.2.2 -> >=7.2.4

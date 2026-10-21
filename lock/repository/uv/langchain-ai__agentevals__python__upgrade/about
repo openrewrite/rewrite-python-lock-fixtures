@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/agentevals/blob/946ad15b9f2ce9bc9843edd2bb773bd07d78ca7e/python/uv.lock
+openevals 0.1.0 -> ==0.2.0 (was 'openevals>=0.0.20')

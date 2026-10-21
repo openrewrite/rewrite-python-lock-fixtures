@@ -1,0 +1,2 @@
+https://github.com/huggingface/hf-discover/blob/3b5a9a71624c41856990b4f3bfa99e067bada016/uv.lock
+fastapi 0.137.1 -> ==0.156.8 (was 'fastapi==0.137.1')

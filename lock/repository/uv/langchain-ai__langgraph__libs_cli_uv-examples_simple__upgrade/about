@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/langgraph/blob/a24fc97778fca67cfac4cd3fc63e508ee1d29f59/libs/cli/uv-examples/simple/uv.lock
+langgraph 1.2.11 -> ==1.2.16 (was 'langgraph>=0.6.0,<2')

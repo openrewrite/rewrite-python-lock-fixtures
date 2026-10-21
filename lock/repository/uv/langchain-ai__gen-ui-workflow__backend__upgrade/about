@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/gen-ui-workflow/blob/3ad3a68c60363f8b38f7638d26361dad267f5d6b/backend/uv.lock
+fastapi 0.136.3 -> ==0.156.8 (was 'fastapi>=0.115.5')

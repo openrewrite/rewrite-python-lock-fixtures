@@ -1,0 +1,2 @@
+https://github.com/huggingface/carbon/blob/10bbc4b35f6e26d2a8767342576ff65108028bf5/uv.lock
+vllm 0.19.1 -> ==0.32.0 (was 'vllm==0.19.1')

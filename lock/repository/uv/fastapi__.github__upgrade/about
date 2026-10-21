@@ -1,0 +1,2 @@
+https://github.com/fastapi/.github/blob/a9d9bfcbd2a1d54cc4bf2a939fef1f923d1c2230/uv.lock
+typer 0.26.3 -> ==0.27.3 (was 'typer>=0.26.3')

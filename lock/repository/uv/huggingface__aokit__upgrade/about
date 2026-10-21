@@ -1,0 +1,2 @@
+https://github.com/huggingface/aokit/blob/66b74bef60dbcbb20e441e0793ef6444bc20402f/uv.lock
+huggingface-hub 1.16.1 -> ==1.8.0 (was 'huggingface-hub>=0.34.0,<2.0')

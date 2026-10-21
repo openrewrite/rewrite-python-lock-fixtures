@@ -1,0 +1,2 @@
+https://github.com/pallets/flask/blob/d086db856be187255b8ec61ef409357393020f32/uv.lock
+click 8.4.2 -> ==8.5.0 (was 'click>=8.1.3')

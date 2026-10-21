@@ -12,6 +12,9 @@ export PYLOCK_UV_VERSION=$uvv
 for d in $root/*/; do
   name=$(basename $d)
   grep -q "^uv	$name	identical" ${NOOP_TSV:?set NOOP_TSV to a corpus-noop.sh result} || continue
+  # a registry from its author's own uv configuration makes uv here resolve elsewhere, so the verdict would mean nothing
+  envindex=$(python3 $HERE/uv-env-index.py $d/pyproject.toml $d/uv.lock)
+  if [ -n "$envindex" ]; then echo "uv\t$name\t-\tENV_INDEX\t$envindex"; continue; fi
   for kind in ${=EDIT_KINDS:-upgrade removal add-leaf add-closure transitive}; do
     o=$res/$name/$kind; rm -rf $o; mkdir -p $o/work
     cp $d/pyproject.toml $o/pyproject.before.toml; cp $d/uv.lock $o/uv.lock.before

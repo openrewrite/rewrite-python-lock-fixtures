@@ -1,0 +1,2 @@
+https://github.com/openai/openai-voice-agent-sdk-sample/blob/6cead90cee279646642a244b54554a596ebb88c3/server/uv.lock
+numpy 2.2.3 -> ==2.4.6 (was 'numpy>=2.2.3')

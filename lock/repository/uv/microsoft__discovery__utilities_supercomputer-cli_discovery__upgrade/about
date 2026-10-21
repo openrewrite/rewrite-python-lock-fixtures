@@ -1,0 +1,2 @@
+https://github.com/microsoft/discovery/blob/04ce5dbdb64a1295a933959cf0342bbeba7c63bc/utilities/supercomputer-cli/discovery/uv.lock
+typer 0.20.0 -> ==0.23.2 (was 'typer')

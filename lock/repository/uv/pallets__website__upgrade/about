@@ -1,0 +1,2 @@
+https://github.com/pallets/website/blob/45bc5634ada3092bc6e7c58f27f532b784433ac2/uv.lock
+gunicorn 26.0.0 -> ==26.2.0 (was 'gunicorn')

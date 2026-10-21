@@ -1,0 +1,2 @@
+https://github.com/microsoft/folx/blob/0b5438649a6a667ad0174b481002d453f08e5d40/uv.lock
+removed "numpy>=2.3.2; python_version >= '3.14'",

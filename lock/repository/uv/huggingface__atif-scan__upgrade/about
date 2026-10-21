@@ -1,0 +1,2 @@
+https://github.com/huggingface/atif-scan/blob/0cc1dd9e2a3a581570fda3a5deb7e435c88b07ed/uv.lock
+huggingface-hub 2.0.0 -> ==2.2.0 (was 'huggingface_hub>=2.0.0')

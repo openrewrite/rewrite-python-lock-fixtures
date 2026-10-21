@@ -1,0 +1,126 @@
+[project]
+name = "pallets-web"
+version = "1.0.0"
+description = "Pallets website and content."
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+maintainers = [{name = "Pallets", email = "contact@palletsprojects.com"}]
+classifiers = ["Private :: Do Not Upload"]
+requires-python = "~=3.13.0"
+dependencies = [
+    "beautifulsoup4",
+    "feedgen",
+    "flask",
+    "flask-sqlalchemy-lite",
+    "gunicorn==26.2.0",
+    "lxml",
+    "markdown-it-py",
+    "mdit-py-plugins",
+    "pygments",
+]
+[dependency-groups]
+dev = [
+    "ruff",
+    "tox",
+    "tox-uv",
+    "python-dotenv",
+    "watchdog",
+]
+gha-update = [
+    "gha-update ; python_full_version >= '3.12'",
+]
+pre-commit= [
+    "pre-commit",
+]
+typing= [
+    "mypy",
+    "types-beautifulsoup4",
+    "types-pygments",
+]
+
+[project.urls]
+Home = "https://palletsprojects.com"
+Source = "https://github.com/pallets/pallets-web/"
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "pallets"
+
+[tool.mypy]
+files = ["src/pallets"]
+show_error_codes = true
+pretty = true
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "feedgen.*",
+]
+ignore_missing_imports = true
+
+[tool.pyright]
+include = ["src/pallets"]
+
+[tool.ruff]
+src = ["src"]
+fix = true
+unsafe-fixes = true
+show-fixes = true
+output-format = "full"
+
+[tool.ruff.lint]
+select = [
+    "B",  # flake8-bugbear
+    "E",  # pycodestyle error
+    "F",  # pyflakes
+    "I",  # isort
+    "UP",  # pyupgrade
+    "W",  # pycodestyle warning
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+order-by-type = false
+
+[tool.uv]
+default-groups = ["dev", "pre-commit", "typing"]
+
+[tool.tox]
+envlist = ["style", "typing"]
+
+[tool.tox.env.env_run_base]
+package = "wheel"
+wheel_build_env = ".pkg"
+constrain_package_deps = true
+use_frozen_constraints = true
+
+[tool.tox.env.style]
+dependency_groups = ["pre-commit"]
+skip_install = true
+commands = [["pre-commit", "run", "--all-files"]]
+
+[tool.tox.env.typing]
+dependency_groups = ["typing"]
+commands = [["mypy"]]
+
+[tool.tox.env.update-actions]
+labels = ["update"]
+dependency_groups = ["gha-update"]
+commands = [["gha-update"]]
+
+[tool.tox.env.update-pre_commit]
+labels = ["update"]
+dependency_groups = ["pre-commit"]
+skip_install = true
+commands = [["pre-commit", "autoupdate", "-j4"]]
+
+[tool.tox.env.update-requirements]
+description = "update uv lock"
+labels = ["update"]
+dependency_groups = []
+no_default_groups = true
+skip_install = true
+commands = [["uv", "lock", {replace = "posargs", default = ["-U"], extend = true}]]

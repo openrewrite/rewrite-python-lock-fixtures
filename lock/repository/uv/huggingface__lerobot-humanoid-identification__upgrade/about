@@ -1,0 +1,2 @@
+https://github.com/huggingface/lerobot-humanoid-identification/blob/b909c720136251cd112c077f51e061dbe52c98f6/uv.lock
+cma 4.4.4 -> ==4.5.0 (was 'cma>=4.3.0')

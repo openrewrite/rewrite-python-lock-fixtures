@@ -1,0 +1,65 @@
+[project]
+name = "fastapi-github-defaults"
+version = "0.0.1"
+description = "Shared defaults for FastAPI GitHub repositories"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "typer>=0.26.3",
+]
+
+[dependency-groups]
+dev = [
+    "prek>=0.4.3",
+    "pytest>=9.0.3",
+    "ruff>=0.15.15",
+    "ty>=0.0.40",
+    "zizmor>=1.25.2",
+]
+
+[tool.pytest]
+minversion = "9.0"
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+]
+strict_xfail = true
+filterwarnings = [
+    "error",
+    # For pytest-xdist
+    'ignore::DeprecationWarning:xdist',
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP", # pyupgrade
+    "TID", # flake8-tidy-imports
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+    "TID252", # relative imports okay
+]
+
+[tool.ruff.lint.pyupgrade]
+# Preserve types, even if a file imports `from __future__ import annotations`.
+keep-runtime-typing = true
+
+[tool.ty.terminal]
+error-on-warning = true
+
+[tool.typos.files]
+extend-exclude = [
+    "coverage/",
+    "uv.lock",
+]
+
+[tool.typos.default.extend-identifiers]
+alls = "alls"

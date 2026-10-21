@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pydantic-temporal-example"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic-ai>=1.0.2",
+    "logfire[fastapi]>=4.3.4",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "slack-sdk>=3.36.0",
+    "pydantic-ai-slim[duckduckgo]>=1.0.2",
+]
+
+[dependency-groups]
+dev = [
+    # Needed for PyCharm users
+    "pip>=25.2",
+]
+lint = ["pyright>=1.1.405", "ruff>=0.12.10"]
+
+[tool.uv]
+default-groups = ["dev", "lint"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+include = [
+    "pydantic_temporal_example/**/*.py",
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "Q",
+    "RUF100",
+    "RUF018", # https://docs.astral.sh/ruff/rules/assignment-in-assert/
+    "C90",
+    "UP",
+    "I",
+    "D",
+    "TID251",
+]
+mccabe = { max-complexity = 15 }
+ignore = [
+    "D100", # ignore missing docstring in module
+    "D102", # ignore missing docstring in public method
+    "D104", # ignore missing docstring in public package
+    "D105", # ignore missing docstring in magic methods
+    "D107", # ignore missing docstring in __init__ methods
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["pydantic_temporal_example"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnnecessaryIsInstance = false
+reportUnnecessaryTypeIgnoreComment = true
+reportMissingModuleSource = false
+include = [
+    "pydantic_temporal_example",
+]
+venvPath = '.'
+venv = ".venv"

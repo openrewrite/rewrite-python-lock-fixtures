@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/deepagents/blob/4f8a6566d1c06c04f5d8d9614706f72ce64532e3/examples/content-builder-agent/uv.lock
+deepagents 0.6.12 -> ==0.7.29 (was 'deepagents>=0.6.12')

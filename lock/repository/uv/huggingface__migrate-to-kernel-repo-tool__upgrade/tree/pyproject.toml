@@ -1,0 +1,10 @@
+[project]
+name = "migrate-to-kernel-repo-tool"
+version = "0.1.0"
+description = "Migrate Hugging Face Hub model repos to kernel repos"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["huggingface_hub==2.2.0"]
+
+[project.scripts]
+migrate-to-kernel-repo = "main:main"

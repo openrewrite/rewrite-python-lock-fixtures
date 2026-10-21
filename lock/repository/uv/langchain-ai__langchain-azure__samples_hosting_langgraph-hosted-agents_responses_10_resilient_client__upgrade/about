@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/langchain-azure/blob/6eb7cbc32a152908a57b3557967e9a92419bca04/samples/hosting/langgraph-hosted-agents/responses/10_resilient/client/uv.lock
+aiohttp 3.14.4 -> ==3.14.5 (was 'aiohttp>=3.0')

@@ -19,4 +19,13 @@ for option, flag in (("resolution-mode", "--resolution"), ("prerelease-mode", "-
                      ("fork-strategy", "--fork-strategy")):
     if option in options:
         args += [flag, options[option]]
+pkg = re.search(r"^\[options\.exclude-newer-package\]\n((?:[^\[\n].*\n)*)", text, re.M)
+for name, value in re.findall(r'^([A-Za-z0-9._-]+) = (.+)$', pkg.group(1), re.M) if pkg else []:
+    inline = re.search(r'span = "P(\d+)([DW])"', value)
+    if value == "false":
+        args += ["--exclude-newer-package", f"{name}=false"]
+    elif inline:
+        args += ["--exclude-newer-package", f"{name}={inline.group(1)} {'days' if inline.group(2) == 'D' else 'weeks'}"]
+    else:
+        args += ["--exclude-newer-package", f"{name}={value.strip(chr(34))}"]
 print("\n".join(args))

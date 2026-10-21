@@ -1,0 +1,2 @@
+https://github.com/huggingface/harbor-hf/blob/f78149d8653a7387f172d727c48daf4a5e19d439/uv.lock
+typer 0.27.1 -> ==0.27.3 (was 'typer>=0.21.0')

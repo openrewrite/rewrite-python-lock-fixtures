@@ -1,0 +1,2 @@
+https://github.com/huggingface/text-embeddings-inference/blob/069ceab366d7cab14cfd40dbcb0d58c93f892583/integration_tests/uv.lock
+pytest 8.3.5 -> ==9.1.1 (was 'pytest>=8.3.0')

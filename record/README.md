@@ -36,7 +36,8 @@ runtime classpath to `record/classpath.txt` with `classpath.gradle` (an init scr
 `record-uv-repository.sh <edit-dir> <case-dir> <scenario-dir> [uv-release]` turns one `corpus-uv-edits.sh` edit
 into a `lock/repository/uv` scenario. uv locks the edit again from an empty cache, then the engine replays it with
 `PYLOCK_RECORD_HTTP` set, which saves every index response it receives into `http/`. It prints `exact` when the engine
-wrote uv's lock and the engine's outcome otherwise. An edit uv fails on is not recorded. uv gets the lock's `[options]` as
+wrote uv's lock and the engine's outcome otherwise. An edit uv fails on is not recorded. Responses to range requests (a wheel read for its metadata where the index
+offers no sidecar) are not recorded either, so such a scenario cannot replay and is left out. uv gets the lock's `[options]` as
 flags (`uv-lock-options.py`), and uv and the engine share one pinned "now" (`UV_INTERNAL__TEST_CURRENT_TIMESTAMP`,
 `PYLOCK_CURRENT_TIME`), written to `recorded-at`. `corpus-uv-edits.sh` runs uv the same way.
 

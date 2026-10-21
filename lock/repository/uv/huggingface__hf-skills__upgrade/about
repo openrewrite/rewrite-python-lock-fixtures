@@ -1,0 +1,2 @@
+https://github.com/huggingface/hf-skills/blob/73c6192456168ecd5d5c61eea101d4605f7eefd6/uv.lock
+pydantic 2.12.5 -> ==2.14.1 (was 'pydantic>=2.10')

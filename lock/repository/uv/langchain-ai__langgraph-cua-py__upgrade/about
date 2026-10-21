@@ -1,0 +1,2 @@
+https://github.com/langchain-ai/langgraph-cua-py/blob/246c6da05a73f204c0d43d1de1ff24b6717ef3bd/uv.lock
+langgraph 1.2.4 -> ==1.2.16 (was 'langgraph>=1.0.10,<2.0.0')

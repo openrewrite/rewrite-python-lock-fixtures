@@ -1,0 +1,2 @@
+https://github.com/huggingface/upskill/blob/eec8ab46f970a880e4d21cfd41dff50ac08c6847/uv.lock
+click 8.3.1 -> ==8.5.0 (was 'click>=8.1')

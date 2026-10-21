@@ -1,0 +1,2 @@
+https://github.com/microsoft/STATE-Bench/blob/5644b1838d96bc4483da29642d058ecaa6f80f7f/uv.lock
+openai 2.16.0 -> ==3.35.1 (was 'openai>=1.0.0')

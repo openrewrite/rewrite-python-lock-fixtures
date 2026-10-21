@@ -1,3 +1,5 @@
 *.whl binary
 *.tar.gz binary
 *.zip binary
+# recorded index responses stay byte for byte
+lock/**/http/** -text

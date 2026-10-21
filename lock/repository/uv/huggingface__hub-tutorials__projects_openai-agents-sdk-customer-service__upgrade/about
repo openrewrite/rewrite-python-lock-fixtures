@@ -1,0 +1,2 @@
+https://github.com/huggingface/hub-tutorials/blob/ae0a5dce689d9cc9e671b9005a892275b1e6cdce/projects/openai-agents-sdk-customer-service/uv.lock
+python-dotenv 1.2.1 -> ==1.2.4 (was 'python-dotenv>=1.2.1')

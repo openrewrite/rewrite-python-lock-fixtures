@@ -1,0 +1,2 @@
+https://github.com/microsoft/physical-ai-toolchain/blob/5b8c088f71d023caa137b361bc78ef6005dec109/workflows/azureml/scripts/uv.lock
+removed "azure-identity==1.26.0",

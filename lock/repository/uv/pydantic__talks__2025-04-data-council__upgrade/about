@@ -1,0 +1,2 @@
+https://github.com/pydantic/talks/blob/71d14d34792b065b06b1dc4e0cb5ecb29a1af8bc/2025-04-data-council/uv.lock
+asyncpg 0.30.0 -> ==0.32.0 (was 'asyncpg>=0.30.0')
