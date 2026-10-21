@@ -3,9 +3,10 @@
 
 usage: trim-listings.py <scenario-dir>...
 
-A listing keeps the files of every version at or above the lowest version of that package in the scenario's before
-or after lock, and every version of a package neither lock holds. uv chose none of the dropped versions, so a replay
-that reaches for one fails on the missing version rather than passing.
+A package locked at the same versions before and after the edit keeps only those versions' files, which are all a
+replay reads of it. Any other package keeps the versions at or above the lowest one either lock holds, and a package
+neither lock holds keeps every version. uv chose none of the dropped versions, so a replay that reaches for one fails
+on the missing version rather than passing.
 """
 import json
 import pathlib
@@ -17,19 +18,18 @@ from packaging.version import InvalidVersion, Version
 
 
 def locked_versions(scenario):
-    lowest = {}
+    versions = {}
     for name in ("before", "after"):
         lock = scenario / name
-        if not lock.exists():
-            continue
-        for pkg, version in re.findall(r'^name = "([^"]+)"\nversion = "([^"]+)"', lock.read_text(), re.M):
-            try:
-                v = Version(version)
-            except InvalidVersion:
-                continue
-            key = canonicalize_name(pkg)
-            lowest[key] = min(lowest.get(key, v), v)
-    return lowest
+        found = {}
+        if lock.exists():
+            for pkg, version in re.findall(r'^name = "([^"]+)"\nversion = "([^"]+)"', lock.read_text(), re.M):
+                try:
+                    found.setdefault(canonicalize_name(pkg), set()).add(Version(version))
+                except InvalidVersion:
+                    continue
+        versions[name] = found
+    return versions
 
 
 def file_version(filename):
@@ -42,27 +42,33 @@ def file_version(filename):
 
 
 def trim(scenario):
-    lowest = locked_versions(scenario)
+    locked = locked_versions(scenario)
     for listing in sorted((scenario / "http").glob("*-listing-json")):
         name = canonicalize_name(listing.name[:-len("-listing-json")])
-        floor = lowest.get(name)
-        if floor is None:
+        before = locked["before"].get(name, set())
+        after = locked["after"].get(name, set())
+        if not before and not after:
             continue
         data = json.loads(listing.read_bytes())
-        kept = [f for f in data.get("files", []) if (file_version(f["filename"]) or floor) >= floor]
+        if before == after:
+            keep = lambda v: v is None or v in before
+        else:
+            floor = min(before | after)
+            keep = lambda v: v is None or v >= floor
+        kept = [f for f in data.get("files", []) if keep(file_version(f["filename"]))]
         if len(kept) == len(data.get("files", [])):
             continue
         data["files"] = kept
         if "versions" in data:
-            data["versions"] = [v for v in data["versions"] if _ge(v, floor)]
+            data["versions"] = [v for v in data["versions"] if keep(_version(v))]
         listing.write_text(json.dumps(data, separators=(",", ":")))
 
 
-def _ge(version, floor):
+def _version(text):
     try:
-        return Version(version) >= floor
+        return Version(text)
     except InvalidVersion:
-        return True
+        return None
 
 
 if __name__ == "__main__":
