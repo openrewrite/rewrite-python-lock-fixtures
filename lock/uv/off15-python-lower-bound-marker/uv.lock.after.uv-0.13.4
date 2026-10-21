@@ -1,0 +1,37 @@
+version = 1
+revision = 5
+requires-python = ">=3.10"
+resolution-markers = [
+    "python_full_version >= '3.11'",
+    "python_full_version < '3.11'",
+]
+
+[[package]]
+name = "reqlike"
+version = "2.0"
+source = { registry = "https://index.example/simple/" }
+dependencies = [
+    { name = "urlish", marker = "python_full_version >= '3.11'" },
+]
+wheels = [
+    { url = "https://index.example/simple/reqlike/reqlike-2.0-py3-none-any.whl", hash = "sha256:7559eeae239ee30d123c723e77debd5d07b16203855028ba1e9c6162f0660b97" },
+]
+
+[[package]]
+name = "scen-s12-minor-marker"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "reqlike" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "reqlike", specifier = "==2.0" }]
+
+[[package]]
+name = "urlish"
+version = "1.26.0"
+source = { registry = "https://index.example/simple/" }
+wheels = [
+    { url = "https://index.example/simple/urlish/urlish-1.26.0-py3-none-any.whl", hash = "sha256:9231fc26a7007f527f67b10108d841f8752a27ba04d4979acbdd3daa4e1e7447" },
+]
