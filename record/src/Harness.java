@@ -31,9 +31,8 @@ public final class Harness {
         long start = System.nanoTime();
         LockFileRegeneration.Result result;
         try {
-            org.openrewrite.ExecutionContext ctx = new InMemoryExecutionContext(t -> {
-                System.err.println("CTX_ERROR " + t);
-            });
+            org.openrewrite.ExecutionContext ctx = new InMemoryExecutionContext(t ->
+                System.err.println("CTX_ERROR " + t));
             if (System.getenv("PYLOCK_RECORD_HTTP") != null) {
                 org.openrewrite.HttpSenderExecutionContextView http = org.openrewrite.HttpSenderExecutionContextView.view(ctx);
                 http.setHttpSender(new RecordingHttp(http.getHttpSender(), Paths.get(System.getenv("PYLOCK_RECORD_HTTP"))));
